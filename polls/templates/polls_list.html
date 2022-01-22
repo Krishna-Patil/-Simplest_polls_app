@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ol>
+    {% for question in question_list %}
+    <li>
+        <h4><a href="{% url 'polls_detail' question.pk %}">{{ question }}</a></h4>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'vote' question.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h1>{{ question }}</h1>
+    {% for choice in question.choice_set.all %}
+    <input type="radio" id="choice{{ choice.id }}" name="choice" value="{{ choice.id }}">
+    <label for="choice{{ choice.id }}">{{ choice.choice_text }} - Votes: {{ choice.votes }}</label>
+    <br>
+    {% endfor %}
+    <br>
+    {% if question.choice_set.count > 0 %}
+    <input type="submit" value="Vote">
+    {% endif %}
+
+</form>
+{% endblock content %}
